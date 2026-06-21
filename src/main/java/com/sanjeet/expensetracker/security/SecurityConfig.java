@@ -21,7 +21,6 @@ public class SecurityConfig {
     private final JwtFilter jwtFilter;
     private final UserRepository userRepository;
 
-    // ✅ Constructor injection without @RequiredArgsConstructor
     public SecurityConfig(JwtFilter jwtFilter, UserRepository userRepository) {
         this.jwtFilter = jwtFilter;
         this.userRepository = userRepository;
@@ -34,6 +33,7 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(a -> a
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/", "/index.html", "/*.js", "/*.css", "/*.ico", "/static/**").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
