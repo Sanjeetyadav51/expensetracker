@@ -399,10 +399,7 @@
 </div>
 
 <script>
-    // ─── CONFIG ────────────────────────────────────────────────────────────────────
-    // If frontend is served BY Spring Boot itself (static folder), use empty string.
-    // If you're opening this file directly in browser, use 'http://localhost:8080'.
-    const API_BASE = (location.port === '8080') ? '/api' : 'http://localhost:8080/api';
+   const API_BASE = '/api';
 
     // ─── STATE ───────────────────────────────────────────────────────────────────
     let currentUser = null;
